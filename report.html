@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Heart Classifier Optimization</title><style>body{font:16px/1.55 system-ui;background:#eef3f6;color:#173448;margin:0}main{max-width:1100px;margin:auto;padding:36px 24px}header{border-top:5px solid #28778b;padding-top:18px}.eyebrow{font-size:12px;letter-spacing:2px;color:#28778b}h1{font-size:39px;line-height:1.15;letter-spacing:-1px}h2{font-size:22px;margin-top:28px}a{color:#246a80}.notice{background:#fff1dc;padding:14px 18px;border-left:4px solid #cc873e}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:16px}.card,details{background:white;border:1px solid #d2dfe7;border-radius:10px;padding:18px}.card h2{margin:10px 0;font-size:21px}.card p{font-size:14px;color:#51697a}.card{color:inherit;text-decoration:none}table{background:white;border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:9px;border-bottom:1px solid #dce5eb;overflow-wrap:anywhere}pre{font-size:12px;overflow:auto}img{max-width:100%;border-radius:8px}footer{margin-top:30px;font-size:13px;color:#51697a}</style></head><body><main><header><p class="eyebrow">ABHINAV TANWAR · PYTHON ANALYSIS</p><h1>Heart Classifier Optimization</h1><p>Comparable logistic and SGD objectives with train-only preprocessing.</p></header><h2>Scope and methods</h2><p>Uses the supplied 500-row heart CSV with source target=1 as the positive label. The scaler and imputer are fitted within training cross-validation. Logistic regression and SGD log-loss, modified-Huber, and elastic-net variants share one stratified held-out set. Modified-Huber is a different loss, not an identical stochastic implementation of logistic likelihood. Results are an exploratory classifier benchmark and do not establish clinical safety or causation.</p><h2>Measured results</h2><table><tr><th>Calculated measure</th><th>Value</th></tr><tr><td>rows</td><td>500</td></tr><tr><td>train rows</td><td>375</td></tr><tr><td>test rows</td><td>125</td></tr><tr><td>test positive</td><td>86</td></tr><tr><td>models / Logistic / accuracy</td><td>0.848</td></tr><tr><td>models / Logistic / precision</td><td>0.8764</td></tr><tr><td>models / Logistic / recall</td><td>0.907</td></tr><tr><td>models / Logistic / f1</td><td>0.8914</td></tr><tr><td>models / Logistic / roc auc</td><td>0.9183</td></tr><tr><td>models / Logistic / average precision</td><td>0.9656</td></tr><tr><td>models / Logistic / selected / model  C</td><td>0.1</td></tr><tr><td>models / SGD log loss / accuracy</td><td>0.808</td></tr><tr><td>models / SGD log loss / precision</td><td>0.8605</td></tr><tr><td>models / SGD log loss / recall</td><td>0.8605</td></tr><tr><td>models / SGD log loss / f1</td><td>0.8605</td></tr><tr><td>models / SGD log loss / roc auc</td><td>0.8831</td></tr><tr><td>models / SGD log loss / average precision</td><td>0.9504</td></tr><tr><td>models / SGD log loss / selected / model  alpha</td><td>0.0001</td></tr><tr><td>models / SGD modified huber / accuracy</td><td>0.856</td></tr><tr><td>models / SGD modified huber / precision</td><td>0.9146</td></tr><tr><td>models / SGD modified huber / recall</td><td>0.8721</td></tr><tr><td>models / SGD modified huber / f1</td><td>0.8929</td></tr><tr><td>models / SGD modified huber / roc auc</td><td>0.9101</td></tr><tr><td>models / SGD modified huber / average precision</td><td>0.9546</td></tr><tr><td>models / SGD modified huber / selected / model  alpha</td><td>0.01</td></tr><tr><td>models / SGD elastic net / accuracy</td><td>0.864</td></tr><tr><td>models / SGD elastic net / precision</td><td>0.9059</td></tr><tr><td>models / SGD elastic net / recall</td><td>0.8953</td></tr><tr><td>models / SGD elastic net / f1</td><td>0.9006</td></tr><tr><td>models / SGD elastic net / roc auc</td><td>0.9258</td></tr><tr><td>models / SGD elastic net / average precision</td><td>0.969</td></tr><tr><td>models / SGD elastic net / selected / model  alpha</td><td>0.01</td></tr></table><details><summary>Full result structure</summary><pre>{
+  &quot;rows&quot;: 500,
+  &quot;train_rows&quot;: 375,
+  &quot;test_rows&quot;: 125,
+  &quot;test_positive&quot;: 86,
+  &quot;positive_class&quot;: &quot;source target = 1&quot;,
+  &quot;models&quot;: {
+    &quot;Logistic&quot;: {
+      &quot;accuracy&quot;: 0.848,
+      &quot;precision&quot;: 0.8764044943820225,
+      &quot;recall&quot;: 0.9069767441860465,
+      &quot;f1&quot;: 0.8914285714285715,
+      &quot;confusion&quot;: [
+        [
+          28,
+          11
+        ],
+        [
+          8,
+          78
+        ]
+      ],
+      &quot;roc_auc&quot;: 0.9183064997018485,
+      &quot;average_precision&quot;: 0.9655647745884828,
+      &quot;selected&quot;: {
+        &quot;model__C&quot;: 0.1
+      }
+    },
+    &quot;SGD_log_loss&quot;: {
+      &quot;accuracy&quot;: 0.808,
+      &quot;precision&quot;: 0.8604651162790697,
+      &quot;recall&quot;: 0.8604651162790697,
+      &quot;f1&quot;: 0.8604651162790697,
+      &quot;confusion&quot;: [
+        [
+          27,
+          12
+        ],
+        [
+          12,
+          74
+        ]
+      ],
+      &quot;roc_auc&quot;: 0.8831246273106739,
+      &quot;average_precision&quot;: 0.9504165595050844,
+      &quot;selected&quot;: {
+        &quot;model__alpha&quot;: 0.0001
+      }
+    },
+    &quot;SGD_modified_huber&quot;: {
+      &quot;accuracy&quot;: 0.856,
+      &quot;precision&quot;: 0.9146341463414634,
+      &quot;recall&quot;: 0.872093023255814,
+      &quot;f1&quot;: 0.8928571428571429,
+      &quot;confusion&quot;: [
+        [
+          32,
+          7
+        ],
+        [
+          11,
+          75
+        ]
+      ],
+      &quot;roc_auc&quot;: 0.9101073345259392,
+      &quot;average_precision&quot;: 0.9545976596680864,
+      &quot;selected&quot;: {
+        &quot;model__alpha&quot;: 0.01
+      }
+    },
+    &quot;SGD_elastic_net&quot;: {
+      &quot;accuracy&quot;: 0.864,
+      &quot;precision&quot;: 0.9058823529411765,
+      &quot;recall&quot;: 0.8953488372093024,
+      &quot;f1&quot;: 0.9005847953216374,
+      &quot;confusion&quot;: [
+        [
+          31,
+          8
+        ],
+        [
+          9,
+          77
+        ]
+      ],
+      &quot;roc_auc&quot;: 0.9257602862254025,
+      &quot;average_precision&quot;: 0.9690321969921705,
+      &quot;selected&quot;: {
+        &quot;model__alpha&quot;: 0.01
+      }
+    }
+  }
+}</pre></details><footer>Calculated by the included native script. Public-repository status is recorded in the collection index.</footer></main></body></html>
